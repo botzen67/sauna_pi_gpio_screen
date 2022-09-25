@@ -85,10 +85,10 @@
   background-position: top center;
   background-repeat: no-repeat;
   width: 275px;
-  height: 200px;
+  height: 150px;
   border: 0px;
   font-family: 'prototyperegular', serif;
-  font-size: 50px;
+  font-size: 100px;
   padding: 3px 0 6px 0;
   cursor: hand;
   cursor: pointer;
@@ -103,45 +103,55 @@
   height: 100px;
   border: 0px;
   margin: 20px 20px 20px 20px;
-  padding: 10px 10px 10px 10px;
+  /* padding: 10px 10px 10px 10px; */
   cursor: hand;
   cursor: pointer;
   font-family: 'prototyperegular', serif;
-  font-size: 50px;
+  font-size: 60px;
   margin-left: auto;
   margin-right: auto;
 }
 
 #off {
-  background-color: #ff0000;
-  color: #ffffff; 
+  /* background-color: #ff0000;
+  color: #ffffff;  */
+  background:url('off.jpg') center no-repeat;
+  background-size: 100% 100%;
 }
 
 #on {
-  background-color: #007f00;
-  color: #ffffff; 
+  /* background-color: #007f00;
+  color: #ffffff;  */
+  background:url('on.jpg') center no-repeat;
+  background-size: 100% 100%;
 }
 
 #up {
-  background-color: #ffa500;
-  color: #ffffff; 
+  /* background-color: #ff0000;
+  color: #ffffff;  */
+  background:url('up.svg') center no-repeat;
 }
 
 #dn {
-  background-color: #0000ff;
-  color: #ffffff; 
+  /* background-color: #0000ff;
+  color: #ffffff;  */
+  background:url('down.svg') center no-repeat;
 }
 
 .tempdata {
   font-size: 45;
   font-family: 'prototyperegular', serif;
   color: #ffffff; 
-  text-align: center;
+}
+
+.body {
+  background-color: black;
+  text-align: center;  
 }
 
 </style>
 </head>
-<body bgcolor="black">
+<body class='body'>
   <div class="tempdata">
     Current: 
     <?php
@@ -159,9 +169,9 @@
     ?> <br/>
   </div>
   <form method="post">
-    <div align=center>
-      <button class="set_button" id="up" name="button_up" value="UP">UP</button>
-      <button class="set_button" id="dn" name="button_dn" value="DN">DN</button>
+    <div>
+      <button class="set_button" id="up" name="button_up" value="UP"></button>
+      <button class="set_button" id="dn" name="button_dn" value="DN"></button>
       <br/>
       <?php
           $f1 = fopen("on_off.dat", 'r');
@@ -171,9 +181,9 @@
           // $state = exec('gpio read 25');
           // If ON show OFF button.  If OFF show ON button
           if ($on_off) {
-          echo('<button class="on_off_button" id="off" name="button_off" value="OFF">OFF</button>');
+          echo('<button class="on_off_button" id="off" name="button_off" value="OFF"></button>');
           } else {
-          echo('<button class="on_off_button" id="on" name="button_on" value="ON">ON</button>');
+          echo('<button class="on_off_button" id="on" name="button_on" value="ON"></button>');
           }
       ?>
     </div>
