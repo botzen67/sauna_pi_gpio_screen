@@ -70,18 +70,28 @@
 <meta http-equiv="refresh" content="10">
 <title>Sauna Controller</title>
 <style rel="stylesheet" type="text/css">
+
+@font-face {
+    font-family: 'prototyperegular';
+    src: url('prototype-webfont.woff2') format('woff2'),
+         url('prototype-webfont.woff') format('woff'),
+         url('prototype.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .on_off_button {
   background-position: top center;
   background-repeat: no-repeat;
   width: 275px;
   height: 200px;
   border: 0px;
-  /* margin: 7px 0 5px 7px; */
+  font-family: 'prototyperegular', serif;
+  font-size: 50px;
   padding: 3px 0 6px 0;
   cursor: hand;
   cursor: pointer;
-  font-family: 'Ariel';
-  font-size: 50px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -96,7 +106,7 @@
   padding: 10px 10px 10px 10px;
   cursor: hand;
   cursor: pointer;
-  font-family: 'Ariel';
+  font-family: 'prototyperegular', serif;
   font-size: 50px;
   margin-left: auto;
   margin-right: auto;
@@ -123,8 +133,8 @@
 }
 
 .tempdata {
-  font-size: 40;
-  font-family: sans-serif;
+  font-size: 45;
+  font-family: 'prototyperegular', serif;
   color: #ffffff; 
   text-align: center;
 }
