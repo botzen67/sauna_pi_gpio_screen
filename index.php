@@ -122,7 +122,6 @@
 </style>
 </head>
 <body bgcolor="black">
-
   <div class="tempdata">
     Current: 
     <?php
@@ -139,7 +138,6 @@
       echo $temp;
     ?> <br/>
   </div>
-
   <form method="post">
     <div align=center>
       <button class="set_button" id="up" name="button_up" value="UP">UP</button>
