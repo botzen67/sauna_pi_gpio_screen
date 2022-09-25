@@ -1,16 +1,19 @@
 <?php
+    // If the ON button is pressed update the on_off state file with ON
     if (isset($_POST['button_on']))
     {
       $f = fopen("on_off.dat",'w');
       fwrite($f, strval(TRUE));
       fclose($f);
     }
+    // If the OFF button is pressed update the on_off state file with OFF
     if (isset($_POST['button_off']))
     {
       $f = fopen("on_off.dat",'w');
       fwrite($f, strval(FALSE));
       fclose($f);
     }
+    // If the UP button is pressed increse the set point by 2 degress and write to disk
     if (isset($_POST['button_up']))
     {
       $f = fopen("set_point.dat", 'r');
@@ -21,6 +24,7 @@
       fwrite($f, $temp);
       fclose($f);
     }
+    // If the DN button is pressed decrease the set point by 2 degress and write to disk
     if (isset($_POST['button_dn']))
     {
       $f = fopen("set_point.dat", 'r');
@@ -31,6 +35,12 @@
       fwrite($f, $temp);
       fclose($f);
     }
+    /*
+      Check to see if we are on or off.  If off turn off the relay.
+      If on check to see if set point is above the current temp by at least 2 degrees.
+      If so turn on the relay.
+      If on but current temp is at least 2 degress above the set point turn off the relay
+    */
     $f1 = fopen("on_off.dat", 'r');
     $on_off = boolval(stream_get_line($f1,0));
     $f2 = fopen("set_point.dat", 'r');
@@ -144,11 +154,12 @@
       <button class="set_button" id="dn" name="button_dn" value="DN">DN</button>
       <br/>
       <?php
-
           $f1 = fopen("on_off.dat", 'r');
           $on_off = boolval(stream_get_line($f1,0));
           fclose($f1);
+          // Old way of doing it: check the state of the output pin:
           // $state = exec('gpio read 25');
+          // If ON show OFF button.  If OFF show ON button
           if ($on_off) {
           echo('<button class="on_off_button" id="off" name="button_off" value="OFF">OFF</button>');
           } else {
