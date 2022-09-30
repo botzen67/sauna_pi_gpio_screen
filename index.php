@@ -1,13 +1,13 @@
 <?php
     // If the ON button is pressed update the on_off state file with ON
-    if (isset($_POST['button_on']))
+    if (isset($_POST['button_off']))
     {
       $f = fopen("on_off.dat",'w');
       fwrite($f, strval(TRUE));
       fclose($f);
     }
     // If the OFF button is pressed update the on_off state file with OFF
-    if (isset($_POST['button_off']))
+    if (isset($_POST['button_on']))
     {
       $f = fopen("on_off.dat",'w');
       fwrite($f, strval(FALSE));
@@ -182,9 +182,9 @@
           // $state = exec('gpio read 25');
           // If ON show OFF button.  If OFF show ON button
           if ($on_off) {
-          echo('<button class="on_off_button" id="off" name="button_off" value="OFF"></button>');
+            echo('<button class="on_off_button" id="on" name="button_on" value="ON"></button>');
           } else {
-          echo('<button class="on_off_button" id="on" name="button_on" value="ON"></button>');
+            echo('<button class="on_off_button" id="off" name="button_off" value="OFF"></button>');
           }
       ?>
     </div>
