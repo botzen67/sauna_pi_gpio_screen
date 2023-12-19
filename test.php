@@ -20,26 +20,32 @@
       If on but current temp is at least 2 degress above the set point turn off the relay
     */
     $f1 = fopen("on_off_test.dat", 'r');
-    $on_off = boolval(stream_get_line($f1,0));
-    if ($on_off) {
-        // $command = escapeshellcmd('python test_on.py');
-        // $output = shell_exec($command);
-        // echo $output;
-        exec('sudo /usr/bin/python /home/sauna/www/sauna_pi_gpio_screen/test_on.py');
-    } else {
-    //     $command = escapeshellcmd('python test_off.py');
-    //     $output = shell_exec($command);
-    //     echo $output;
-        // exec('nohup sudo python test_off.py');
-        exec('sudo /usr/bin/python /home/sauna/www/sauna_pi_gpio_screen/test_on.py');
 
+    $on_off = boolval(stream_get_line($f1,0));
+     if ($on_off) {
+        exec('gpio write 4 1');
+        exec('gpio mode 4 out');
+        // exec('gpio write 25 1');
+        // exec('gpio mode 25 out');
+        // exec('gpio write 28 1');
+        // exec('gpio mode 28 out');
+        // exec('gpio write 29 1');
+        // exec('gpio mode 29 out');
+    } else {
+        exec('gpio write 4 0');
+        exec('gpio mode 4 out');
+        // exec('gpio write 25 0');
+        // exec('gpio mode 25 out');
+        // exec('gpio write 28 0');
+        // exec('gpio mode 28 out');
+        // exec('gpio write 29 0');
+        // exec('gpio mode 29 out');
     }
     fclose($f1);
 ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="refresh" content="10">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>Sauna Controller</title>
 <style rel="stylesheet" type="text/css">
