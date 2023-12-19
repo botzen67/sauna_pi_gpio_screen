@@ -19,7 +19,7 @@
       $f = fopen("set_point.dat", 'r');
       $temp = floatval(stream_get_line($f, 0));
       fclose($f);
-      $temp = min(130, $temp + 2);
+      $temp = min(185, $temp + 5);
       $f = fopen("set_point.dat",'w');
       fwrite($f, $temp);
       fclose($f);
@@ -30,7 +30,7 @@
       $f = fopen("set_point.dat", 'r');
       $temp = floatval(stream_get_line($f, 0));
       fclose($f);
-      $temp = max(50, $temp - 2);
+      $temp = max(70, $temp - 5);
       $f = fopen("set_point.dat",'w');
       fwrite($f, $temp);
       fclose($f);
@@ -48,11 +48,11 @@
     $f3 = fopen("temp.dat", 'r');
     $temp = floatval(stream_get_line($f3, 0));
     if ($on_off) {
-      if ($temp < $set_point - 2) {
+      if ($temp < $set_point - 1) {
         exec('gpio write 25 1');
         exec('gpio mode 25 out');
         // 28 and 29 are the other relays
-      } elseif ($temp > $set_point + 2) {
+      } elseif ($temp > $set_point + 1) {
         exec('gpio write 25 0');
         exec('gpio mode 25 out');    
       };
