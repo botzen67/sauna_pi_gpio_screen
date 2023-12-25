@@ -147,7 +147,7 @@
 
 .body {
   background-color: black;
-  text-align: center;  
+  text-align: left;  
 }
 
 </style>
