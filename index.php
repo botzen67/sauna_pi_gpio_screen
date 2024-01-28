@@ -49,16 +49,16 @@
     $temp = floatval(stream_get_line($f3, 0));
     if ($on_off) {
       if ($temp < $set_point - 1) {
-        exec('gpio write 25 1');
-        exec('gpio mode 25 out');
+        exec('gpio write 22 1');
+        exec('gpio mode 22 out');
         // 28 and 29 are the other relays
       } elseif ($temp > $set_point + 1) {
-        exec('gpio write 25 0');
-        exec('gpio mode 25 out');    
+        exec('gpio write 22 0');
+        exec('gpio mode 22 out');    
       };
     } else {
-      exec('gpio write 25 0');
-      exec('gpio mode 25 out');      
+      exec('gpio write 22 0');
+      exec('gpio mode 22 out');      
     }
     fclose($f1);
     fclose($f2);

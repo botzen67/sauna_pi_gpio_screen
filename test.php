@@ -23,8 +23,8 @@
 
     $on_off = boolval(stream_get_line($f1,0));
      if ($on_off) {
-        exec('gpio write 4 1');
-        exec('gpio mode 4 out');
+        exec('gpio write 22 1');
+        exec('gpio mode 22 out');
         // exec('gpio write 25 1');
         // exec('gpio mode 25 out');
         // exec('gpio write 28 1');
@@ -32,8 +32,8 @@
         // exec('gpio write 29 1');
         // exec('gpio mode 29 out');
     } else {
-        exec('gpio write 4 0');
-        exec('gpio mode 4 out');
+        exec('gpio write 22 0');
+        exec('gpio mode 22 out');
         // exec('gpio write 25 0');
         // exec('gpio mode 25 out');
         // exec('gpio write 28 0');
