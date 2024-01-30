@@ -51,14 +51,23 @@
       if ($temp < $set_point - 1) {
         exec('gpio write 22 1');
         exec('gpio mode 22 out');
+        $f4 = fopen("heater_message.txt", 'w');
+        fwrite($f4, "Heater Is ON");
+        fclose($f4);
         // 28 and 29 are the other relays
       } elseif ($temp > $set_point + 1) {
         exec('gpio write 22 0');
-        exec('gpio mode 22 out');    
+        exec('gpio mode 22 out'); 
+        $f4 = fopen("heater_message.txt", 'w');
+        fwrite($f4, "");
+        fclose($f4);
       };
     } else {
       exec('gpio write 22 0');
-      exec('gpio mode 22 out');      
+      exec('gpio mode 22 out');
+      $f4 = fopen("heater_message.txt", 'w');
+      fwrite($f4, "");
+      fclose($f4);     
     }
     fclose($f1);
     fclose($f2);
@@ -189,5 +198,13 @@
       ?>
     </div>
   </form>
+  <div class="tempdata">
+  <?php
+    $f4 = fopen("heater_message.txt", 'r');
+    $heater_message = fgets($f4);
+    fclose($f4);
+    echo $heater_message;
+  ?>
+  </div>
 </body>
 </html>
