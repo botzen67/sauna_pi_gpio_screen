@@ -14,8 +14,7 @@ for line in datafile:
     onoff = int(fields[2])
     if temp > 1 and timestamp > datetime.datetime(2024,1,28,10):
         data.append((timestamp,temp))
-        # data.append(temp)
-        # print(timestamp, temp, onoff)
+
 # print(len(data))
 df =  pd.DataFrame(data, columns = ['Date', 'Temp'])
 # print(df)
