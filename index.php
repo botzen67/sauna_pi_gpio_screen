@@ -41,6 +41,7 @@
       If so turn on the relay.
       If on but current temp is at least 2 degress above the set point turn off the relay
     */
+    $out_pin = '22';
     $f1 = fopen("on_off.dat", 'r');
     $on_off = boolval(stream_get_line($f1,0));
     $f2 = fopen("set_point.dat", 'r');
@@ -49,24 +50,24 @@
     $temp = floatval(stream_get_line($f3, 0));
     if ($on_off) {
       if ($temp < $set_point - 1) {
-        exec('gpio write 22 1');
-        exec('gpio mode 22 out');
-        $f4 = fopen("heater_message.txt", 'w');
-        fwrite($f4, "Heater Is ON");
+        exec('gpio write '.$out_pin.' 1');
+        exec('gpio mode '.$out_pin.' out');
+        $f4 = fopen("heater_status.dat", 'w');
+        fwrite($f4, strval(TRUE));
         fclose($f4);
         // 28 and 29 are the other relays
       } elseif ($temp > $set_point + 1) {
-        exec('gpio write 22 0');
-        exec('gpio mode 22 out'); 
-        $f4 = fopen("heater_message.txt", 'w');
-        fwrite($f4, "");
+        exec('gpio write '.$out_pin.' 0');
+        exec('gpio mode '.$out_pin.' out');
+        $f4 = fopen("heater_status.dat", 'w');
+        fwrite($f4, strval(FALSE));
         fclose($f4);
       };
     } else {
-      exec('gpio write 22 0');
-      exec('gpio mode 22 out');
-      $f4 = fopen("heater_message.txt", 'w');
-      fwrite($f4, "");
+      exec('gpio write '.$out_pin.' 0');
+      exec('gpio mode '.$out_pin.' out');
+      $f4 = fopen("heater_status.dat", 'w');
+      fwrite($f4, strval(FALSE));
       fclose($f4);     
     }
     fclose($f1);
@@ -136,6 +137,13 @@
   background-size: 100% 100%;
 }
 
+#onactive {
+  /* background-color: #007f00;
+  color: #ffffff;  */
+  background:url('on_active.jpg') center no-repeat;
+  background-size: 100% 100%;
+}
+
 #up {
   /* background-color: #ff0000;
   color: #ffffff;  */
@@ -191,20 +199,19 @@
           // $state = exec('gpio read 25');
           // If ON show OFF button.  If OFF show ON button
           if ($on_off) {
-            echo('<button class="on_off_button" id="on" name="button_on" value="ON"></button>');
+            $f2 = fopen("heater_status.dat", 'r');
+            $heater_active = boolval(stream_get_line($f2,0));
+            fclose($f2);
+            if ($heater_active) {
+              echo('<button class="on_off_button" id="onactive" name="button_on" value="ON"></button>');
+            } else {
+              echo('<button class="on_off_button" id="on" name="button_on" value="ON"></button>');
+            }
           } else {
             echo('<button class="on_off_button" id="off" name="button_off" value="OFF"></button>');
           }
       ?>
     </div>
   </form>
-  <div class="tempdata">
-  <?php
-    $f4 = fopen("heater_message.txt", 'r');
-    $heater_message = fgets($f4);
-    fclose($f4);
-    echo $heater_message;
-  ?>
-  </div>
 </body>
 </html>
