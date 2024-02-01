@@ -12,7 +12,7 @@ for line in datafile:
     timestamp = parser.parse(fields[0])
     temp = int(fields[1])
     onoff = int(fields[2])
-    if temp > 1 and timestamp > datetime.datetime(2024,1,28,10):
+    if timestamp > datetime.datetime(2024,1,29,21,20) and timestamp < datetime.datetime(2024,1,29,23,15):
         data.append((timestamp,temp))
 
 # print(len(data))
