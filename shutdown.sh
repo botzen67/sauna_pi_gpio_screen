@@ -1,4 +1,2 @@
 #!/bin/bash
-sync
-sync
-shutdown -h now
+sudo shutdown --poweroff now
