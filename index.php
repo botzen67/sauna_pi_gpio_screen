@@ -214,18 +214,6 @@
       <br/>
       <br/>
       <br/>
-      <br/>
-      <br/>
-      <br/>      
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <a href="shutdown.php">SHUTDOWN</a>
     </div>
   </form>
