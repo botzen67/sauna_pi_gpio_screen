@@ -1,7 +1,7 @@
 <?php
     if (isset($_POST['shutdown_button']))
     {
-      exec('sudo /var/www/html/shutdown.sh');
+      exec('./shutdown.sh');
     }
 ?>
 <html>

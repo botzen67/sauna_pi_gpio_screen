@@ -211,6 +211,22 @@
             echo('<button class="on_off_button" id="off" name="button_off" value="OFF"></button>');
           }
       ?>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>      
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <a href="shutdown.php">SHUTDOWN</a>
     </div>
   </form>
 </body>

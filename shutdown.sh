@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo sync
-sudo sync
-sudo shutdown -h now
+sync
+sync
+shutdown -h now
