@@ -133,7 +133,7 @@
 #on {
   /* background-color: #007f00;
   color: #ffffff;  */
-  background:url('on.jpg') center no-repeat;
+  background:url('on_inactive.jpg') center no-repeat;
   background-size: 100% 100%;
 }
 
