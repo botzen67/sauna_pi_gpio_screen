@@ -3,7 +3,7 @@
     if (isset($_POST['button_off']))
     {
       $f = fopen("on_off.dat",'w');
-      fwrite($f, strval(TRUE));
+      fwrite($f, strval(120));
       fclose($f);
     }
     // If the OFF button is pressed update the on_off state file with OFF
@@ -165,6 +165,7 @@
 .body {
   background-color: black;
   text-align: left;  
+  zoom: 150%;
 }
 
 </style>
