@@ -51,6 +51,13 @@
     <div>
       <button class="shutdown_button" id="shutdown_button" name="shutdown_button" value="shutdown_button">SHUTDOWN!</button>
     </div>
+    <div>
+    --------------
+    </div>
+    <div>
+    <a href="index.php">BACK</a>
+    </div>
+    
   </form>
 </body>
 </html>
