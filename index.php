@@ -165,7 +165,7 @@
 .body {
   background-color: black;
   text-align: left;  
-  zoom: 150%;
+  zoom: 130%;
 }
 
 </style>
