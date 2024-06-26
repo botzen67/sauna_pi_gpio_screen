@@ -1,4 +1,40 @@
 <?php
+    // If the lights button is pressed toggle the lights ON/OFF
+    if (isset($_POST['lights']))
+    {
+      $light_val = trim(file_get_contents("lights.dat"));
+      if ($light_val == 1) {
+        $light_val = 0;
+      } else {
+        $light_val = 1;
+      }
+      $f = fopen("lights.dat",'w');
+      fwrite($f, $light_val);
+      fclose($f);
+      $body = [
+        "requestId" => "uuid", 
+        "payload" => [
+              "sku" => "H61A8", 
+              "device" => "10:C4:35:33:30:34:16:FF", 
+              "capability" => [
+                  "type" => "devices.capabilities.on_off", 
+                  "instance" => "powerSwitch", 
+                  "value" => $light_val 
+              ] 
+            ] 
+      ];
+      $ch = curl_init('https://openapi.api.govee.com/router/api/v1/device/control');
+      curl_setopt_array($ch, array(
+          CURLOPT_POST => TRUE,
+          CURLOPT_RETURNTRANSFER => TRUE,
+          CURLOPT_HTTPHEADER => array(
+              'Govee-API-Key: 4514c4a4-af52-47a9-b1ca-a3e3cce9c9a1',
+              'Content-Type: application/json'
+          ),
+          CURLOPT_POSTFIELDS => json_encode($body)
+      ));
+      $response = curl_exec($ch); 
+    }
     // If the ON button is pressed update the on_off state file with ON
     if (isset($_POST['button_off']))
     {
@@ -107,6 +143,25 @@
   margin-right: auto;
 }
 
+.lights_button {
+  background-position: top center;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  border: 0px;
+  /* margin: 20px 20px 20px 20px; */
+  cursor: hand;
+  cursor: pointer;
+  font-family: 'prototyperegular', serif;
+  font-size: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  background:url('light-bulb.svg') center no-repeat;
+  background-size: 100% 100%;
+  background-color: #007f00;
+  color: #ffffff;
+}
+
 .set_button {
   background-position: top center;
   background-repeat: no-repeat;
@@ -213,6 +268,7 @@
           }
       ?>
       <br/>
+      <button class="lights_button" id="lights" name="lights" value="lights"></button>
       <br/>
       <br/>
       <a href="shutdown.php">SHUTDOWN</a>
