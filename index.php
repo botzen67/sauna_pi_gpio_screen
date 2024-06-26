@@ -11,6 +11,8 @@
       $f = fopen("lights.dat",'w');
       fwrite($f, $light_val);
       fclose($f);
+      $api_key = trim(file_get_contents("lights_api_key.dat"));
+
       $body = [
         "requestId" => "uuid", 
         "payload" => [
@@ -28,7 +30,7 @@
           CURLOPT_POST => TRUE,
           CURLOPT_RETURNTRANSFER => TRUE,
           CURLOPT_HTTPHEADER => array(
-              'Govee-API-Key: 4514c4a4-af52-47a9-b1ca-a3e3cce9c9a1',
+              'Govee-API-Key: '.$api_key, 
               'Content-Type: application/json'
           ),
           CURLOPT_POSTFIELDS => json_encode($body)
