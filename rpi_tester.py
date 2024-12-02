@@ -1,5 +1,6 @@
+#!/usr/bin/python
 import RPi.GPIO as GPIO
-pin = 38
+pin = 31
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(pin, GPIO.OUT)
 done = False

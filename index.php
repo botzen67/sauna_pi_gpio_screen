@@ -79,7 +79,6 @@
       If so turn on the relay.
       If on but current temp is at least 2 degress above the set point turn off the relay
     */
-    $out_pin = '22';
     $f1 = fopen("on_off.dat", 'r');
     $on_off = boolval(stream_get_line($f1,0));
     $f2 = fopen("set_point.dat", 'r');
@@ -88,22 +87,19 @@
     $temp = floatval(stream_get_line($f3, 0));
     if ($on_off) {
       if ($temp < $set_point - 1) {
-        exec('gpio write '.$out_pin.' 1');
-        exec('gpio mode '.$out_pin.' out');
+        exec('sudo /usr/bin/python /home/sauna/www/sauna_pi_gpio_screen/rpi_on.py');
         $f4 = fopen("heater_status.dat", 'w');
         fwrite($f4, strval(TRUE));
         fclose($f4);
         // 28 and 29 are the other relays
       } elseif ($temp > $set_point + 1) {
-        exec('gpio write '.$out_pin.' 0');
-        exec('gpio mode '.$out_pin.' out');
+        exec('sudo /usr/bin/python /home/sauna/www/sauna_pi_gpio_screen/rpi_off.py');
         $f4 = fopen("heater_status.dat", 'w');
         fwrite($f4, strval(FALSE));
         fclose($f4);
       };
     } else {
-      exec('gpio write '.$out_pin.' 0');
-      exec('gpio mode '.$out_pin.' out');
+      exec('sudo /usr/bin/python /home/sauna/www/sauna_pi_gpio_screen/rpi_off.py');
       $f4 = fopen("heater_status.dat", 'w');
       fwrite($f4, strval(FALSE));
       fclose($f4);     
